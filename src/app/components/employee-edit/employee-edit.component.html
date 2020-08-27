@@ -1,0 +1,67 @@
+ <div class="row justify-content-center">
+   <div class="col-md-4 register-employee">
+     <!-- form card register -->
+     <div class="card card-outline-secondary">
+       <div class="card-header">
+         <h3 class="mb-0">Edit Employee</h3>
+       </div>
+       <div class="card-body">
+         <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+           <div class="form-group">
+             <label for="inputName">Email</label>
+              <input class="form-control" type="email" formControlName="email">
+              <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+                Enter your email.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+                Enter valid email.
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.EmailValidation">
+                Email is already taken.
+              </div>
+           </div>
+           <div class="form-group">
+             <label for="inputEmail3">Username</label>
+              <input class="form-control" type="text" formControlName="username">
+              <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm.username.errors?.required">
+                Userame is required.
+              </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputPassword3">Role</label>
+              <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+                formControlName="role">
+                <option value="">Choose...</option>
+                <option *ngFor="let userRole of UserRole" value="{{userRole}}">{{userRole}}
+                </option>
+              </select>
+              <!-- error -->
+              <div class="invalid-feedback" *ngIf="submitted && myForm.role.errors?.required">
+                Choose Role.
+              </div>
+           </div>
+
+           <div class="form-group">
+             <label for="inputVerify3">Mobile No</label>
+             <input class="form-control" type="text" formControlName="phoneNumber">
+             <!-- error -->
+             <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.required">
+               Enter your phone number.
+             </div>
+             <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.pattern">
+               Enter Numbers Only
+             </div>
+           </div>
+
+           <div class="form-group">
+             <button class="btn btn-success btn-lg btn-block" type="submit">Update</button>
+           </div>
+         </form>
+       </div>
+     </div><!-- form  -->
+   </div>
+ </div>

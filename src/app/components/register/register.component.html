@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+  <div class="col-md-4 register-employee">
+    <!-- form card register -->
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <div class="form-group">
+          <label for="inputName">Email</label>
+          <input class="form-control" type="email" formControlName="email">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+            Enter your email.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+            Enter valid email.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.EmailValidation">
+            Email is already taken.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail3">Username</label>
+          <input class="form-control" type="text" formControlName="username">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.username.errors?.required">
+            Userame is required.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.username.errors?.UsernameValidation">
+            Username is already taken.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword2">Password</label>
+          <input class="form-control" type="password" formControlName="password">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.password.errors?.required">
+            Enter your password.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword3">Role</label>
+          <select class="custom-select form-control" (change)="updateProfile($event.target.value)"
+            formControlName="role">
+            <option value="">Choose...</option>
+            <option *ngFor="let userRole of UserRole" value="{{userRole}}">{{userRole}}
+            </option>
+          </select>
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.role.errors?.required">
+            Choose Role.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputVerify3">Mobile No</label>
+          <input class="form-control" type="number" formControlName="phoneNumber">
+          <!-- error -->
+          <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.required">
+            Enter your phone number.
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.phoneNumber.errors?.pattern">
+            Enter Numbers Only
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-success btn-lg btn-block" type="submit">Register</button>
+        </div>
+      </form>
+      <a class="btn btn-outline-primary" routerLinkActive="active" routerLink="/login">Login</a>
+    </div>
+  </div><!-- form card register -->
+</div>
