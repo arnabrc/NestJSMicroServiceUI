@@ -30,13 +30,24 @@ export class AuthService {
     sessionStorage.setItem('userId', authResult.userId);
     sessionStorage.setItem('id_token', authResult.idToken);
     sessionStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    sessionStorage.setItem('userRole', authResult.userRole);
   }
 
   logout() {
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('id_token');
     sessionStorage.removeItem('expires_at');
+    sessionStorage.removeItem('userRole');
 
+  }
+
+  adminRole() {
+    const admin = sessionStorage.getItem('userRole');
+    if (admin.toUpperCase() === 'ADMIN') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public isLoggedIn() {

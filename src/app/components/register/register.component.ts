@@ -35,8 +35,9 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.dirty || !this.registerForm.touched) {
         return  window.confirm('Discard changes?');
         // return false;
+    } else {
+      return true;
       }
-    return true;
     /* if (!this.registerForm.dirty || !this.registerForm.touched || this.registerForm.valid) {
       return true;
     } else {

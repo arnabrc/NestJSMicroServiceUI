@@ -32,8 +32,9 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.dirty || !this.loginForm.touched) {
       return window.confirm('Discard changes?');
       // return false;
+    } else {
+      return true;
     }
-    return true;
   }
 
   mainForm() {

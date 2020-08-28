@@ -1,7 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../service/api.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class EmployeeEditComponent implements OnInit {
     public fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -38,15 +40,16 @@ export class EmployeeEditComponent implements OnInit {
   canDeactivate() {
     if (!this.editForm.dirty || !this.editForm.touched) {
       return window.confirm('Discard changes?');
+    } else {
+      return true;
     }
-    return true;
   }
 
   // Choose options with select-dropdown
   updateProfile(e) {
     this.editForm.get('role').setValue(e, {
       onlySelf: true
-    })
+    });
   }
 
   // Getter to access form control
@@ -90,6 +93,10 @@ export class EmployeeEditComponent implements OnInit {
           });
       }
     }
+  }
+
+  back() {
+    this.location.back();
   }
 
 }

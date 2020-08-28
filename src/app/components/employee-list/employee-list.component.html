@@ -23,7 +23,8 @@
         <td>{{user.role}}</td>
         <td>{{user.phoneNumber}}</td>
         <td class="text-center edit-block">
-          <span class="edit" [routerLink]="['/employee-edit/', user._id]">
+          <!-- <span class="edit" [routerLink]="['/employee-edit/', user._id]"> -->
+          <span class="edit" (click)="editUser(user, user._id)">
             <button type="button" class="btn btn-success btn-sm">Edit</button>
           </span>
           <span class="delete" (click)="removeUser(user, i)">

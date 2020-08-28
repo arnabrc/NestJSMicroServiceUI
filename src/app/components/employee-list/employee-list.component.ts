@@ -42,8 +42,20 @@ export class EmployeeListComponent implements OnInit {
     return true;
   } */
 
+  editUser(user, userId) {
+    if (this.authService.isLoggedIn() && this.authService.adminRole()) {
+      console.log('this.authService.isLoggedIn(): ', this.authService.isLoggedIn());
+      console.log('this.authService.adminRole(): ', this.authService.adminRole());
+      const url = `/employee-edit/${userId}`;
+      // this.router.navigate(['/employee-edit/', userId]);
+      this.router.navigateByUrl(url);
+    } else {
+      window.alert('You are not authorized to perform this action');
+    }
+  }
+
   removeUser(user, index) {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn() && this.authService.adminRole()) {
       if (window.confirm('Are you sure?')) {
         this.apiService.deleteUser(user._id).subscribe((data) => {
           // this.User.splice(index, 1);
